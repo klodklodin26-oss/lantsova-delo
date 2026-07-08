@@ -328,14 +328,11 @@ body{font-size:1.06rem;line-height:1.72}
 .sec-card p{font-size:1.06rem}
 .cta p{font-size:1.22rem}
 
-/* рубрики блога (фильтр) */
-.rubrics{display:flex;flex-wrap:wrap;gap:.6rem;margin:-.4rem 0 2.2rem}
-.chip{font-family:var(--font-body);font-size:.98rem;font-weight:500;padding:.55rem 1.15rem;
-  border:1px solid var(--line-ink);border-radius:100px;background:transparent;color:var(--ink-soft);
-  cursor:pointer;transition:background .3s var(--ease),color .3s,border-color .3s}
-.chip:hover{border-color:var(--brass);color:var(--green-deep)}
-.chip.is-active{background:var(--green-deep);color:var(--paper);border-color:var(--green-deep)}
-.post.hide{display:none}
+/* рубрики блога (разделы) */
+.rubric-group{margin-top:2.8rem}
+.rubric-group:first-of-type{margin-top:.4rem}
+.rubric-title{font-family:var(--font-display);font-weight:600;font-size:clamp(1.45rem,3vw,1.95rem);
+  color:var(--green-deep);margin-bottom:.3rem;letter-spacing:-.01em}
 </style>
 </head>
 <body>
@@ -504,16 +501,17 @@ body{font-size:1.06rem;line-height:1.72}
   <section class="section section--tint" id="blog">
     <div class="wrap">
       <div class="head"><p class="label reveal">Блог</p><h2 data-split>Трезво о деле</h2><p class="reveal">Разборы, правда о бизнесе и истории без глянца.</p></div>
-      <div class="rubrics reveal" id="rubrics">
-        <button class="chip is-active" data-filter="all">Все</button>
-        <button class="chip" data-filter="Трезво о деле">Трезво о деле</button>
-        <button class="chip" data-filter="Когда выходить">Когда выходить</button>
-        <button class="chip" data-filter="Мои ошибки">Мои ошибки</button>
+      <div class="rubric-group">
+        <h3 class="rubric-title reveal">Трезво о деле</h3>
+        <a class="post reveal" href="blog/pochemu-ne-rastet.html"><h3>Твой бизнес не растёт не из-за рекламы. А из-за тебя</h3><span class="more">Читать →</span></a>
       </div>
-      <div id="postlist">
-        <a class="post reveal" data-rubric="Трезво о деле" href="blog/pochemu-ne-rastet.html"><div class="kick">Трезво о деле</div><h3>Твой бизнес не растёт не из-за рекламы. А из-за тебя</h3><span class="more">Читать →</span></a>
-        <a class="post reveal" data-rubric="Когда выходить" href="blog/kogda-zakryvat.html"><div class="kick">Когда выходить</div><h3>Три фразы, после которых я понимаю: бизнес пора закрывать</h3><span class="more">Читать →</span></a>
-        <a class="post reveal" data-rubric="Мои ошибки" href="blog/karapuz.html"><div class="kick">Мои ошибки</div><h3>Я закрыла три магазина на пике продаж. И не жалею</h3><span class="more">Читать →</span></a>
+      <div class="rubric-group">
+        <h3 class="rubric-title reveal">Когда выходить</h3>
+        <a class="post reveal" href="blog/kogda-zakryvat.html"><h3>Три фразы, после которых я понимаю: бизнес пора закрывать</h3><span class="more">Читать →</span></a>
+      </div>
+      <div class="rubric-group">
+        <h3 class="rubric-title reveal">Мои ошибки</h3>
+        <a class="post reveal" href="blog/karapuz.html"><h3>Я закрыла три магазина на пике продаж. И не жалею</h3><span class="more">Читать →</span></a>
       </div>
     </div>
   </section>
@@ -684,24 +682,6 @@ body{font-size:1.06rem;line-height:1.72}
     var sio=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-45% 0px -50% 0px'});
     document.querySelectorAll('main section[id]').forEach(function(s){sio.observe(s);});
   }
-})();
-</script>
-<script>
-(function(){
-  var chips=document.querySelectorAll('#rubrics .chip');
-  var posts=document.querySelectorAll('#postlist .post');
-  chips.forEach(function(c){
-    c.addEventListener('click',function(){
-      chips.forEach(function(x){x.classList.remove('is-active');});
-      c.classList.add('is-active');
-      var f=c.dataset.filter;
-      posts.forEach(function(p){
-        var show=(f==='all'||p.dataset.rubric===f);
-        p.classList.toggle('hide',!show);
-        if(show){p.style.opacity='1';p.style.transform='none';}
-      });
-    });
-  });
 })();
 </script>
 </body>
