@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Клавдия Ланцова — 10 бизнесов. Трезвый разбор дела</title>
+<meta name="description" content="Клавдия Ланцова — действующий предприниматель, 25 лет в деле, 10 бизнесов с нуля. Разбираю дела предпринимателей трезво: где расти, а где выходить. Без коучинга и без воды.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- пометка «анимация активна» до первой отрисовки (анти-мигание) -->
+<script>document.documentElement.classList.add('js-anim');</script>
+<style>
+/* =========================================================
+   Клавдия Ланцова — журнальный минимал + современная моушн-анимация
+   Светлая бумага · изумруд · латунь. Playfair Display + Golos Text.
+   Моушн: Lenis (плавный скролл) · GSAP/ScrollTrigger · SplitType · маркиза
+   ========================================================= */
+:root{
+  --paper:#FBF9F3; --paper-2:#F3EFE4;
+  --ink:#141712; --ink-soft:#4A4E45; --muted:#8A8E82;
+  --green:#1E7A50; --green-deep:#0F4A31;
+  --brass:#C9A24B; --brass-deep:#A9832F;
+  --line:#E4DECF; --line-ink:#DAD3C2;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'Golos Text',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --maxw:1180px; --gutter:clamp(1.2rem,4vw,2.4rem);
+  --section-y:clamp(4.5rem,11vw,9rem);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{font-family:var(--font-body);background:var(--paper);color:var(--ink);
+  line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+
+.label{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--brass-deep);
+  display:inline-flex;align-items:center;gap:.7rem;font-weight:500}
+.label::before{content:"";width:26px;height:1px;background:var(--brass)}
+.label.plain::before{display:none}
+
+/* ---------- ЗАГРУЗЧИК ---------- */
+.loader{position:fixed;inset:0;z-index:200;background:var(--paper);
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:clamp(1.5rem,5vw,3rem);will-change:transform}
+.loader .l-word{font-family:var(--font-display);font-style:italic;font-size:clamp(1.4rem,4vw,2.2rem);color:var(--green-deep)}
+.loader .l-count{font-family:var(--font-display);font-weight:600;font-size:clamp(3rem,12vw,7rem);line-height:.8;color:var(--ink)}
+.loader .l-count small{font-size:.3em;color:var(--brass-deep);vertical-align:top}
+/* аварийный уход загрузчика, если JS не сработал */
+.loader{animation:loaderFailsafe 0s linear 3.5s forwards}
+@keyframes loaderFailsafe{to{opacity:0;visibility:hidden;pointer-events:none}}
+
+/* ---------- ШАПКА ---------- */
+.masthead{position:sticky;top:0;z-index:50;background:rgba(251,249,243,.85);
+  backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .4s}
+.masthead.solid{border-bottom:1px solid var(--line)}
+.mast-row{display:flex;align-items:center;justify-content:space-between;padding:1.15rem 0}
+.logo{font-family:var(--font-display);font-weight:600;font-size:1.25rem}
+.logo .dot{color:var(--brass)}
+.nav{display:flex;gap:2.2rem;align-items:center}
+.nav a{font-size:.82rem;letter-spacing:.06em;color:var(--ink-soft);position:relative;padding:.2rem 0;transition:color .3s}
+.nav a::after{content:"";position:absolute;left:0;bottom:-3px;height:1px;width:0;background:var(--green);transition:width .35s var(--ease)}
+.nav a:hover{color:var(--ink)}.nav a:hover::after,.nav a.active::after{width:100%}
+.nav .cta{color:var(--green-deep);font-weight:600}.nav .cta::after{background:var(--brass);height:2px}
+.burger{display:none;background:none;border:0;cursor:pointer;width:30px;height:22px;position:relative}
+.burger span{position:absolute;left:0;height:2px;width:100%;background:var(--ink);transition:.35s var(--ease)}
+.burger span:nth-child(1){top:0}.burger span:nth-child(2){top:10px}.burger span:nth-child(3){top:20px}
+.burger.open span:nth-child(1){top:10px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:10px;transform:rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{padding:clamp(3rem,7vw,6rem) 0 var(--section-y)}
+.hero-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+  padding-bottom:1.6rem;border-bottom:1px solid var(--line);
+  font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(1.6rem,4vw,3.5rem);
+  align-items:end;padding-top:clamp(2.5rem,6vw,5rem)}
+.hero h1{font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2.3rem,4.8vw,4.1rem);line-height:1.12;letter-spacing:-.015em}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.1em}
+.hero h1 .line-i{display:block}
+.hero h1 em{font-style:italic;color:var(--green)}
+.hero-lead{margin-top:2rem;max-width:44ch;font-size:1.12rem;color:var(--ink-soft)}
+.hero-lead strong{color:var(--ink);font-weight:600}
+.btn-row{display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap;margin-top:2.2rem}
+.btn{font-family:var(--font-body);font-size:.9rem;font-weight:500;padding:.95rem 1.8rem;border-radius:2px;
+  cursor:pointer;transition:all .35s var(--ease);display:inline-flex;align-items:center;gap:.6rem}
+.btn--primary{background:var(--green-deep);color:var(--paper)}
+.btn--primary:hover{background:var(--green);transform:translateY(-2px);box-shadow:0 12px 30px rgba(15,74,49,.22)}
+.btn--text{color:var(--ink);border-bottom:2px solid var(--brass);border-radius:0;padding:.4rem 0;
+  letter-spacing:.16em;text-transform:uppercase;font-size:.78rem;transition:gap .3s,color .3s}
+.btn--text:hover{gap:1rem;color:var(--green-deep)}
+.safety{margin-top:1.8rem;font-size:.8rem;color:var(--muted);letter-spacing:.04em}
+
+.figure{position:relative}
+.figure .frame{position:relative;overflow:hidden;border-radius:3px;border:1px solid var(--line-ink);background:var(--paper-2)}
+.figure .frame::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:linear-gradient(155deg,rgba(30,122,80,.12),transparent 42%,rgba(201,162,75,.14));mix-blend-mode:multiply}
+.figure img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 16%;
+  filter:saturate(.97) contrast(1.02) sepia(.05);transform:scale(1.06);will-change:transform}
+.figure .cap{margin-top:.9rem;display:flex;justify-content:space-between;align-items:baseline;
+  font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.figure .cap b{font-family:var(--font-display);font-size:1.6rem;color:var(--green-deep);letter-spacing:0}
+
+/* ---------- МАРКИЗА (кинетическая типографика) ---------- */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:clamp(1rem,2.4vw,1.8rem) 0;background:var(--paper)}
+.marquee-track{display:flex;width:max-content;will-change:transform;animation:marquee 30s linear infinite}
+.marquee-seg{display:flex;align-items:center;font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.8rem,4.6vw,3.4rem);white-space:nowrap;color:var(--ink)}
+.marquee-seg i{font-style:italic;color:var(--green);margin:0 .35em}
+.marquee-seg .out{color:transparent;-webkit-text-stroke:1px var(--brass-deep)}
+.marquee-seg .sep{color:var(--brass);margin:0 .55em;font-style:normal}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ---------- СЕКЦИИ ---------- */
+.section{padding:var(--section-y) 0}
+.section--tint{background:var(--paper-2)}
+.head{max-width:56ch;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.head h2{font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;letter-spacing:-.01em;margin:1rem 0 .8rem}
+.head p{color:var(--ink-soft);font-size:1.05rem}
+.grid{display:grid;gap:clamp(1.4rem,3vw,2.4rem)}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+.center{align-items:center}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:2.4rem 1.4rem 2.4rem 0;position:relative}
+.stat+.stat{padding-left:1.6rem}
+.stat+.stat::before{content:"";position:absolute;left:0;top:1.8rem;bottom:1.8rem;width:1px;background:var(--line)}
+.stat .num{font-family:var(--font-display);font-weight:600;font-size:clamp(2.6rem,6vw,3.8rem);
+  line-height:1;color:var(--ink);display:flex;align-items:baseline;gap:.25rem}
+.stat .num small{font-size:.34em;color:var(--brass-deep);font-family:var(--font-body);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.stat .cap{margin-top:.9rem;font-size:.9rem;color:var(--muted)}
+
+.pull{font-family:var(--font-display);font-style:italic;font-weight:500;
+  font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.28;color:var(--green-deep)}
+.pull cite{display:block;font-style:normal;font-family:var(--font-body);font-weight:600;
+  font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-deep);margin-top:1.4rem}
+.prose p{color:var(--ink-soft);margin-bottom:1rem}
+.prose p:first-child{font-size:1.12rem;color:var(--ink)}
+
+.offer{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(1rem,3vw,2.4rem);
+  align-items:baseline;padding:2rem 0;border-top:1px solid var(--line);transition:padding-left .4s var(--ease)}
+.offer:last-child{border-bottom:1px solid var(--line)}
+.offer:hover{padding-left:.6rem}
+.offer .no{font-family:var(--font-display);font-size:1.1rem;color:var(--brass);font-weight:600}
+.offer h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.4rem,3vw,2rem);line-height:1.1}
+.offer .kick{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:.5rem;font-weight:500}
+.offer p{color:var(--ink-soft);font-size:.98rem;margin-top:.5rem;max-width:52ch}
+.offer .arrow{font-size:1.4rem;color:var(--muted);transition:color .3s,transform .3s;align-self:center}
+.offer:hover .arrow{color:var(--green-deep);transform:translateX(6px)}
+
+.index .row{display:grid;grid-template-columns:110px 1fr auto;gap:1.4rem;align-items:baseline;padding:1.5rem 0;border-top:1px solid var(--line)}
+.index .row:last-child{border-bottom:1px solid var(--line)}
+.index .yr{font-size:.82rem;letter-spacing:.1em;color:var(--brass-deep);text-transform:uppercase}
+.index h3{font-family:var(--font-display);font-weight:600;font-size:1.35rem;display:inline}
+.index p{color:var(--ink-soft);font-size:.95rem;margin-top:.2rem}
+.index .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.index .tag.on{color:var(--green)}
+.index .ext{display:inline-block;font-size:.8rem;color:var(--brass-deep);border-bottom:1px solid var(--line-ink);margin-left:.2rem;transition:color .3s,border-color .3s}
+.index .ext:hover{color:var(--green-deep);border-color:var(--green)}
+
+.pillars{counter-reset:p}
+.pillar{padding:2rem 0;border-top:1px solid var(--line)}
+.pillar h3{font-family:var(--font-display);font-weight:600;font-size:1.5rem;margin-bottom:.5rem;display:flex;align-items:baseline;gap:.9rem}
+.pillar h3::before{counter-increment:p;content:"0" counter(p);font-size:.9rem;color:var(--brass);font-family:var(--font-body);font-weight:600;letter-spacing:.08em}
+.pillar p{color:var(--ink-soft);max-width:64ch;padding-left:calc(.9rem + 1.6em)}
+
+.post{padding:1.8rem 0;border-top:1px solid var(--line);transition:padding-left .4s var(--ease)}
+.post:last-child{border-bottom:1px solid var(--line)}
+.post:hover{padding-left:.6rem}
+.post .kick{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:.5rem}
+.post h3{font-family:var(--font-display);font-weight:500;font-size:clamp(1.3rem,2.6vw,1.7rem);line-height:1.2}
+.post .more{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-deep);margin-top:.7rem;display:inline-block;transition:letter-spacing .3s}
+.post:hover .more{letter-spacing:.22em}
+
+.cta{text-align:center;max-width:70ch;margin-inline:auto}
+.cta h2{font-family:var(--font-display);font-weight:600;font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;margin:1rem 0 1.2rem}
+.cta h2 em{font-style:italic;color:var(--green)}
+.cta p{color:var(--ink-soft);font-size:1.08rem;margin-bottom:2.4rem}
+.socials{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.social{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.5rem;border:1px solid var(--line-ink);border-radius:2px;
+  font-size:.86rem;letter-spacing:.04em;color:var(--ink);transition:all .35s var(--ease)}
+.social:hover{border-color:var(--green);color:var(--green-deep);transform:translateY(-2px)}
+.social .ic{width:19px;height:19px;fill:currentColor}
+.rule-draw{height:1px;background:var(--brass);transform-origin:left}
+
+.foot{border-top:1px solid var(--line);padding:3rem 0}
+.foot-row{display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.foot .logo{font-size:1.05rem}
+.foot-nav{display:flex;gap:1.6rem;flex-wrap:wrap}
+.foot-nav a{font-size:.8rem;letter-spacing:.06em;color:var(--muted);transition:color .3s}
+.foot-nav a:hover{color:var(--green-deep)}
+.foot-meta{font-size:.78rem;color:var(--muted);letter-spacing:.06em}
+.foot-legal{margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;font-size:.92rem;color:var(--muted)}
+.foot-legal a{color:var(--ink-soft);border-bottom:1px solid var(--line-ink);transition:color .3s}
+.foot-legal a:hover{color:var(--green-deep)}
+
+/* ---------- ФЛАГМАН-ОФФЕР ---------- */
+.flagship{border:1px solid var(--line-ink);border-radius:6px;padding:clamp(1.8rem,4vw,3.2rem);background:var(--paper)}
+.fl-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.6rem,4vw,3rem)}
+.flagship .desc{color:var(--ink-soft);margin-bottom:.4rem;font-size:1.05rem}
+.get{list-style:none;display:grid;gap:.9rem;margin:1.4rem 0}
+.get li{position:relative;padding-left:1.7rem;color:var(--ink)}
+.get li::before{content:"";position:absolute;left:0;top:.5em;width:9px;height:9px;border:1.5px solid var(--green);border-radius:50%}
+.meta-line{font-size:.9rem;color:var(--muted);letter-spacing:.02em;border-top:1px solid var(--line);padding-top:1rem;margin-top:1.2rem}
+.price{font-family:var(--font-display);font-weight:600;font-size:clamp(1.6rem,3.4vw,2.2rem);color:var(--green-deep);margin:.5rem 0 0}
+.price small{font-size:.5em;color:var(--muted);font-family:var(--font-body);font-weight:500}
+.aside-card{background:var(--paper-2);border:1px solid var(--line);border-radius:5px;padding:clamp(1.3rem,3vw,1.8rem);height:100%}
+.aside-card h4{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-deep);margin-bottom:1.1rem}
+.bonus{list-style:none;display:grid;gap:.8rem}
+.bonus li{padding-left:1.6rem;position:relative;font-size:.95rem;color:var(--ink)}
+.bonus li::before{content:"+";position:absolute;left:0;color:var(--brass);font-weight:700;font-family:var(--font-display);font-size:1.2em;line-height:1}
+.guarantee{margin-top:1.4rem;padding:1.1rem 1.2rem;border:1px dashed var(--brass);border-radius:5px;background:rgba(201,162,75,.07);font-size:.95rem}
+.guarantee b{color:var(--green-deep)}
+.scarcity{margin-top:1rem;font-size:.92rem;color:var(--ink-soft)}
+.scarcity b{color:var(--green-deep)}
+.tg-btn{display:inline-flex;align-items:center;gap:.7rem;background:var(--green-deep);color:var(--paper);
+  padding:1.05rem 2rem;border-radius:3px;font-weight:600;font-size:1rem;margin-top:1.5rem;transition:all .35s var(--ease)}
+.tg-btn:hover{background:var(--green);transform:translateY(-2px);box-shadow:0 14px 34px rgba(15,74,49,.24)}
+.tg-btn svg{width:20px;height:20px;fill:currentColor}
+.tg-note{font-size:.82rem;color:var(--muted);margin-top:.8rem}
+.edit-ph{color:var(--brass-deep);border-bottom:1px dashed var(--brass);font-style:italic}
+
+/* второстепенные направления */
+.sec-offers{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.sec-card{border:1px solid var(--line);border-radius:5px;padding:clamp(1.3rem,3vw,1.7rem);transition:border-color .35s,transform .35s}
+.sec-card:hover{border-color:var(--brass);transform:translateY(-3px)}
+.sec-card h4{font-family:var(--font-display);font-weight:600;font-size:1.25rem;margin-bottom:.4rem}
+.sec-card p{color:var(--ink-soft);font-size:.94rem}
+
+/* лид-магнит */
+.magnet{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;
+  background:radial-gradient(120% 140% at 85% 0%,#14543a,transparent 60%),linear-gradient(120deg,var(--green-deep),#0c3a26);
+  color:var(--paper);border-radius:6px;padding:clamp(1.8rem,4.5vw,3.4rem)}
+.magnet h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.12;margin-bottom:.8rem}
+.magnet p{color:rgba(237,231,214,.82)}
+.magnet .tg-btn{background:var(--brass);color:#20180a}
+.magnet .tg-btn:hover{background:#E3C066;box-shadow:0 14px 34px rgba(201,162,75,.32)}
+@media(max-width:860px){.fl-grid,.sec-offers,.magnet{grid-template-columns:1fr}}
+
+/* ---------- СОСТОЯНИЯ ДЛЯ АНИМАЦИИ (только когда js-anim активен) ---------- */
+.js-anim .reveal{opacity:0}
+.js-anim .hero .fx-up{opacity:0}
+.js-anim .hero .line-i{opacity:0}
+.js-anim [data-split]{opacity:0}
+.js-anim .figure .frame{opacity:0}
+.js-anim .rule-draw{transform:scaleX(0)}
+@media(prefers-reduced-motion:reduce){
+  .marquee-track{animation:none}
+  .loader{display:none}
+}
+
+/* ---------- АДАПТИВ ---------- */
+@media(max-width:860px){
+  .hero-grid,.g2,.g3{grid-template-columns:1fr}
+  .hero .figure{max-width:380px;margin-top:2rem}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat+.stat::before{display:none}
+  .stat{padding:1.8rem 0!important;border-top:1px solid var(--line)}
+  .stat:nth-child(-n+2){border-top:0}
+  .nav{position:fixed;inset:0 0 0 auto;width:min(80vw,340px);flex-direction:column;align-items:flex-start;justify-content:center;
+    gap:1.8rem;padding:2rem 2.4rem;background:var(--paper);border-left:1px solid var(--line);
+    transform:translateX(100%);transition:transform .45s var(--ease)}
+  .nav.open{transform:none;box-shadow:-20px 0 60px rgba(0,0,0,.08)}
+  .nav a{font-size:1.05rem}
+  .burger{display:block;z-index:60}
+  .offer{grid-template-columns:auto 1fr}.offer .arrow{display:none}
+  .index .row{grid-template-columns:1fr;gap:.3rem}.index .tag{margin-top:.3rem}
+}
+@media(max-width:520px){.stats{grid-template-columns:1fr}.stat:nth-child(2){border-top:1px solid var(--line)}}
+
+/* ===================================================================
+   ЧИТАЕМОСТЬ ДЛЯ АУДИТОРИИ 35–55 (крупнее, контрастнее, меньше разрядки)
+   =================================================================== */
+html{font-size:112.5%}                     /* базовый ~18px вместо 16px */
+:root{--ink-soft:#3B3F37;--muted:#5E635A}  /* выше контраст приглушённого текста */
+body{font-size:1.06rem;line-height:1.72}
+
+/* навигация и кнопки — крупнее, кликабельнее */
+.nav a{font-size:1.02rem;letter-spacing:.02em}
+.nav .cta{font-weight:700}
+.burger{width:34px;height:26px}
+.btn{font-size:1.05rem;padding:1.1rem 2.1rem}
+.btn--text{font-size:1rem;letter-spacing:.06em;border-bottom-width:2px}
+.tg-btn{font-size:1.12rem;padding:1.2rem 2.3rem}
+.tg-note{font-size:1.02rem;color:var(--ink-soft)}
+
+/* подписи-ярлыки: крупнее и без широкой разрядки */
+.label{font-size:.94rem;letter-spacing:.1em}
+.hero-top{font-size:.94rem;letter-spacing:.08em}
+.offer .kick,.post .kick,.sec-card .kick{font-size:.9rem!important;letter-spacing:.08em!important}
+.aside-card h4{font-size:.96rem;letter-spacing:.08em}
+.figure .cap{font-size:.94rem;letter-spacing:.06em}
+.index .yr{font-size:.98rem;letter-spacing:.06em}
+.index .tag{font-size:.92rem;letter-spacing:.05em}
+.index .ext{font-size:.98rem}
+.safety{font-size:1rem}
+.foot-nav a{font-size:.98rem}
+.foot-meta{font-size:.94rem}
+
+/* основной текст — крупнее и темнее */
+.hero-lead{font-size:1.24rem;color:var(--ink-soft)}
+.head p{font-size:1.2rem;color:var(--ink-soft)}
+.prose p{font-size:1.12rem}
+.prose p:first-child{font-size:1.26rem}
+.stat .num small{font-size:.44em}
+.stat .cap{font-size:1.08rem;color:var(--ink-soft)}
+.flagship .desc{font-size:1.16rem}
+.get li,.bonus li{font-size:1.12rem}
+.meta-line{font-size:1.04rem}
+.guarantee{font-size:1.1rem}
+.scarcity{font-size:1.1rem}
+.index h3{font-size:1.5rem}
+.index p{font-size:1.05rem}
+.pillar p{font-size:1.14rem}
+.pillar h3{font-size:1.65rem}
+.post h3{font-size:clamp(1.4rem,2.8vw,1.85rem)}
+.post .more{font-size:.92rem}
+.sec-card p{font-size:1.06rem}
+.cta p{font-size:1.22rem}
+</style>
+</head>
+<body>
+
+<!-- ЗАГРУЗЧИК -->
+<div class="loader" id="loader">
+  <span class="l-word">Диагноз.</span>
+  <span class="l-count"><span class="load-num">0</span><small>%</small></span>
+</div>
+
+<!-- ШАПКА -->
+<header class="masthead" id="mast">
+  <div class="wrap mast-row">
+    <a class="logo" href="#top">Клавдия Ланцова<span class="dot">.</span></a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav" id="nav" aria-label="Основная навигация">
+      <a href="#about">Обо мне</a>
+      <a href="#offers">Предложения</a>
+      <a href="#projects">Проекты</a>
+      <a href="#trust">Доверие</a>
+      <a href="#blog">Блог</a>
+      <a class="cta" href="#contacts">Разбор дела</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-top fx-up">
+        <span>Личный бренд · 2026</span>
+        <span>Предприниматель · не коуч</span>
+        <span>Чита</span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <p class="label fx-up">Не мотивация. Диагноз. · 25 лет в деле</p>
+          <h1><span class="line"><span class="line-i">Твой бизнес есть.</span></span><span class="line"><span class="line-i">Но <em>буксует</em>.</span></span><span class="line"><span class="line-i">И обсудить не с кем.</span></span></h1>
+          <p class="hero-lead fx-up">За 40 минут скажу правду о твоём деле и <strong>один шаг</strong>, который его сдвинет — с той, кто построила десять своих. Со стороны видно то, что тебе изнутри не видно.</p>
+          <div class="btn-row fx-up">
+            <a class="btn btn--primary" href="#offers">Разобрать моё дело</a>
+            <a class="btn btn--text" href="#projects">Смотреть 10 бизнесов →</a>
+          </div>
+          <p class="safety fx-up">Без флирта · без воды · без «я же говорил»</p>
+        </div>
+        <figure class="figure">
+          <div class="frame"><img src="assets/klavdiya.jpg" alt="Клавдия Ланцова"></div>
+          <figcaption class="cap"><b>Клавдия Ланцова</b><span>с 2001</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- МАРКИЗА -->
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-seg"><span>Не мотивация</span><i>— диагноз</i><span class="sep">✦</span><span class="out">Трезво о деле</span><span class="sep">✦</span><span>10 бизнесов</span><i>— 25 лет</i><span class="sep">✦</span></div>
+      <div class="marquee-seg"><span>Не мотивация</span><i>— диагноз</i><span class="sep">✦</span><span class="out">Трезво о деле</span><span class="sep">✦</span><span>10 бизнесов</span><i>— 25 лет</i><span class="sep">✦</span></div>
+    </div>
+  </section>
+
+  <!-- ЦИФРЫ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="stats reveal">
+        <div class="stat"><div class="num"><span>8–12</span><small>млн ₽/мес</small></div><div class="cap">Клиника «Лазермед» — с нуля до 8–12 млн в месяц.</div></div>
+        <div class="stat"><div class="num"><span class="count" data-to="25">25</span><small>торговых точек</small></div><div class="cap">Сеть мороженого Maxlove. 30 млн ₽ за сезон.</div></div>
+        <div class="stat"><div class="num"><span class="count" data-to="20">20</span><small>%</small></div><div class="cap">Годовая рентабельность клиники.</div></div>
+        <div class="stat"><div class="num"><span class="count" data-to="10">10</span><small>бизнесов</small></div><div class="cap">Открыла, масштабировала, вовремя закрыла.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КТО Я -->
+  <section class="section section--tint" id="about">
+    <div class="wrap grid g2 center">
+      <div>
+        <p class="label reveal">Кто я</p>
+        <div class="head" style="margin-bottom:1.6rem"><h2 data-split>Практик, который ставит диагноз</h2></div>
+        <div class="prose reveal">
+          <p>Я не бизнес-коуч и не теоретик. Я 25 лет в деле — с выручкой, кредитами и ошибками. Открывала, масштабировала и вовремя закрывала.</p>
+          <p>Ко мне приходят предприниматели, у которых бизнес есть, но буксует, — и которым не с кем это трезво обсудить. Дома не поймут, друзья позавидуют, партнёры — лица заинтересованные. Я захожу со стороны и говорю правду о деле, включая ту, что слышать не хочется.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <blockquote class="pull">«Я не продам тебе мечту. Я скажу, есть ли у твоего дела будущее».<cite>Клавдия Ланцова</cite></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ФЛАГМАН: РАЗБОР ДЕЛА -->
+  <section class="section" id="offers">
+    <div class="wrap">
+      <div class="head"><p class="label reveal">Флагман</p><h2 data-split>Разбор дела</h2><p class="reveal">Один разговор, после которого понятно, что делать с твоим бизнесом дальше.</p></div>
+      <div class="flagship reveal">
+        <div class="fl-grid">
+          <div>
+            <p class="desc">Ты заполняешь короткую анкету. Мы говорим 40 минут. Через два дня у тебя на руках письменное резюме: где твой бизнес теряет деньги, где точка роста и один конкретный следующий шаг — а не список из двадцати.</p>
+            <ul class="get">
+              <li>Взгляд со стороны от практика с P&amp;L (отчётом о прибылях и убытках) на 8–12 млн ₽/мес — а не от коуча с презентацией</li>
+              <li>Один следующий шаг, сформулированный так, что завтра можно начать</li>
+              <li>Честный ответ на вопрос, который сам себе боишься задать: есть ли у этого дела будущее</li>
+            </ul>
+            <p class="meta-line">Формат: анкета → 40 минут разговора → письменное резюме на руки</p>
+            <p class="price">25 000 ₽ <small>· за разбор</small></p>
+            <a class="tg-btn" href="https://vk.me/lantsova.delo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M13.2 17.3c-5.4 0-8.8-3.8-8.9-10h2.8c.1 4.6 2.2 6.5 3.7 6.9V7.3h2.6v3.8c1.5-.2 3.1-1.9 3.6-3.8h2.6c-.4 2.3-2 4-3.2 4.7 1.2.6 3 2.1 3.7 4.6h-2.9c-.5-1.6-1.9-2.9-3.8-3.1v3.1z"/></svg>Написать «разбор» ВКонтакте</a>
+            <p class="tg-note">Пришлю анкету и условия. Отвечаю лично.</p>
+          </div>
+          <div>
+            <div class="aside-card">
+              <h4>В разбор входит сверх разговора</h4>
+              <ul class="bonus">
+                <li>Письменное резюме с шагом — не «созвонились и разошлись»</li>
+                <li>Чек-лист «Куда утекают деньги в малом бизнесе» — 12 точек по моим десяти делам</li>
+                <li>Неделя на дозадать вопросы в личке после разбора</li>
+              </ul>
+              <div class="guarantee"><b>Гарантия честности.</b> Если за 40 минут не увидишь ни одного конкретного шага для своего дела — верну деньги. Диагноз без пользы мне самой не нужен.</div>
+              <p class="scarcity"><b>Беру не больше 5 разборов в месяц</b> — каждый готовлю лично по анкете.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="head" style="margin-top:clamp(3rem,7vw,5rem);margin-bottom:1.6rem"><p class="label reveal">Не только разбор</p><h2 data-split>Работаю ещё по двум направлениям</h2></div>
+      <div class="sec-offers">
+        <a class="sec-card reveal" href="#contacts"><div class="kick" style="color:var(--green);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Консалтинг</div><h4>Клиника «0 → прибыль»</h4><p>Путь построения и автоматизации клиники, который я прошла: с 600 тыс. до 8 млн ₽ в месяц.</p></a>
+        <a class="sec-card reveal" href="#contacts"><div class="kick" style="color:var(--green);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Автоматизация</div><h4>Операционка без рутины</h4><p>Боты, CRM, роботизация для малого бизнеса. То, что я делаю для своих дел.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРОЕКТЫ -->
+  <section class="section section--tint" id="projects">
+    <div class="wrap">
+      <div class="head"><p class="label reveal">Послужной список</p><h2 data-split>Больше десяти дел за двадцать пять лет</h2><p class="reveal">Я умею не только запускать. Я умею вовремя выходить — а это встречается реже.</p></div>
+      <div class="index">
+        <div class="row reveal"><span class="yr">2021 · сейчас</span><div><h3>Клиника «Лазермед».</h3> <a class="ext" href="https://lasermed.su" target="_blank" rel="noopener">lasermed.su ↗</a><p>Косметология с нуля до 8–12 млн ₽/мес, рентабельность 20%.</p></div><span class="tag on">работает</span></div>
+        <div class="row reveal"><span class="yr">2025 · сейчас</span><div><h3>Робокафе.</h3> <a class="ext" href="https://vk.com/robotcafe" target="_blank" rel="noopener">vk.com/robotcafe ↗</a><p>Роботизированные кафе: мороженое, кофе и бабл-ти.</p></div><span class="tag on">работает</span></div>
+        <div class="row reveal"><span class="yr">2015 · сейчас</span><div><h3>«Maxlove plombir».</h3> <a class="ext" href="https://vk.com/maxloveplombir" target="_blank" rel="noopener">vk.com/maxloveplombir ↗</a><p>Сеть мороженого: 25 торговых точек, 30 млн ₽ за сезон.</p></div><span class="tag on">работает</span></div>
+        <div class="row reveal"><span class="yr">2015 · сейчас</span><div><h3>Транспортное ТВ.</h3> <a class="ext" href="https://chita-1mt.ru/" target="_blank" rel="noopener">chita-1mt.ru ↗</a><p>Информационное телевидение в транспорте Читы.</p></div><span class="tag on">работает</span></div>
+        <div class="row reveal"><span class="yr">2017–2018</span><div><h3>«Хочу ТОП».</h3> <a class="ext" href="https://vk.com/hochutop" target="_blank" rel="noopener">vk.com/hochutop ↗</a><p>Деливери-портал по доставке еды.</p></div><span class="tag">закрыто</span></div>
+        <div class="row reveal"><span class="yr">2015–2017</span><div><h3>«Бизбренд».</h3><p>Франшиза по регистрации товарных знаков — 80 ТЗ зарегистрировано в Чите.</p></div><span class="tag">завершено</span></div>
+        <div class="row reveal"><span class="yr">2010–2015</span><div><h3>«Карапуз».</h3><p>Детские супермаркеты. Закрыла вовремя, на пике, когда зашли федеральные сети.</p></div><span class="tag">закрыто</span></div>
+        <div class="row reveal"><span class="yr">2010–2015</span><div><h3>Ювелирная бижутерия.</h3><p>Три отдела.</p></div><span class="tag">закрыто</span></div>
+        <div class="row reveal"><span class="yr">2006–2012</span><div><h3>«Суперигрушка».</h3><p>Магазин игрушек.</p></div><span class="tag">закрыто</span></div>
+        <div class="row reveal"><span class="yr">2006–2012</span><div><h3>«Забайкалье».</h3><p>Отдел по продаже DVD-дисков с фильмами.</p></div><span class="tag">закрыто</span></div>
+        <div class="row reveal"><span class="yr">2000–2010</span><div><h3>«Канцмаркет».</h3><p>Три магазина канцтоваров.</p></div><span class="tag">закрыто</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ТРИ ОПОРЫ -->
+  <section class="section" id="trust">
+    <div class="wrap">
+      <div class="head"><p class="label reveal">Почему мне верить</p><h2 data-split>Доверие на трёх опорах</h2><p class="reveal">Не «мне доверяют тысячи», а факты, характер и понимание твоей боли.</p></div>
+      <div class="pillars">
+        <div class="pillar reveal"><h3>Рацио — факты</h3><p>Клиника 0 → 8–12 млн ₽/мес. Сеть 25 торговых точек, 30 млн за сезон. Робокафе. 25 лет, десять бизнесов. Мой P&L — мой сертификат.</p></div>
+        <div class="pillar reveal"><h3>Аутентичность</h3><p>Я не прячу провалы: закрытые вовремя дела — это решения, а не поражения. Не глянец — прямота.</p></div>
+        <div class="pillar reveal"><h3>Эмпатия</h3><p>Предпринимателю не с кем трезво обсудить дело: дома не поймут, друзья позавидуют. Я — то самое место.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- БЛОГ -->
+  <section class="section section--tint" id="blog">
+    <div class="wrap">
+      <div class="head"><p class="label reveal">Блог</p><h2 data-split>Трезво о деле</h2><p class="reveal">Разборы, правда о бизнесе и истории без глянца.</p></div>
+      <div>
+        <a class="post reveal" href="#contacts"><div class="kick">Трезво о деле</div><h3>Твой бизнес не растёт не из-за рекламы. А из-за тебя</h3><span class="more">Читать →</span></a>
+        <a class="post reveal" href="#contacts"><div class="kick">Когда выходить</div><h3>Три фразы, после которых я понимаю: бизнес пора закрывать</h3><span class="more">Читать →</span></a>
+        <a class="post reveal" href="#contacts"><div class="kick">Мои ошибки</div><h3>Я закрыла три магазина на пике продаж. И не жалею</h3><span class="more">Читать →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЛИД-МАГНИТ -->
+  <section class="section" id="magnet" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="magnet reveal">
+        <div>
+          <p class="label plain" style="color:var(--brass);margin-bottom:1rem">Бесплатно · без разбора</p>
+          <h3>Забери чек-лист:<br>3 фразы, после которых бизнес пора закрывать</h3>
+          <p>Те самые, по которым я закрыла три магазина на пике — и не жалею. Оставь контакт — пришлю.</p>
+        </div>
+        <div>
+          <a class="tg-btn" href="https://vk.me/lantsova.delo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M13.2 17.3c-5.4 0-8.8-3.8-8.9-10h2.8c.1 4.6 2.2 6.5 3.7 6.9V7.3h2.6v3.8c1.5-.2 3.1-1.9 3.6-3.8h2.6c-.4 2.3-2 4-3.2 4.7 1.2.6 3 2.1 3.7 4.6h-2.9c-.5-1.6-1.9-2.9-3.8-3.1v3.1z"/></svg>Забрать чек-лист ВКонтакте</a>
+          <p class="tg-note" style="color:rgba(237,231,214,.72)">Напиши «чек-лист» — пришлю сразу.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" id="contacts">
+    <div class="wrap">
+      <div class="rule-draw" style="margin-bottom:clamp(2.5rem,6vw,5rem)"></div>
+      <div class="cta">
+        <p class="label plain reveal" style="justify-content:center;color:var(--brass-deep)">Разбор твоего дела</p>
+        <h2 data-split>Напиши слово «разбор» — <em>и начнём</em></h2>
+        <p class="reveal">40 минут, твой бизнес, один честный разговор и следующий шаг. Пришлю анкету и условия. Отвечаю лично.</p>
+        <div class="reveal" style="display:flex;flex-direction:column;align-items:center;gap:.9rem;margin-top:.4rem">
+          <a class="tg-btn" href="https://vk.me/lantsova.delo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M13.2 17.3c-5.4 0-8.8-3.8-8.9-10h2.8c.1 4.6 2.2 6.5 3.7 6.9V7.3h2.6v3.8c1.5-.2 3.1-1.9 3.6-3.8h2.6c-.4 2.3-2 4-3.2 4.7 1.2.6 3 2.1 3.7 4.6h-2.9c-.5-1.6-1.9-2.9-3.8-3.1v3.1z"/></svg>Написать «разбор» ВКонтакте</a>
+          <p class="tg-note">Удобнее в MAX? Пишите там: <a href="https://max.ru/id753502248509_biz" target="_blank" rel="noopener" style="color:var(--green-deep);border-bottom:1px solid var(--brass)">Клавдия в MAX</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-row">
+      <a class="logo" href="#top">Клавдия Ланцова<span class="dot" style="color:var(--brass)">.</span></a>
+      <nav class="foot-nav"><a href="#about">Обо мне</a><a href="#offers">Предложения</a><a href="#projects">Проекты</a><a href="#blog">Блог</a><a href="#contacts">Контакты</a></nav>
+      <p class="foot-meta">Чита · 2026 · Без гуру, без воды. По делу.</p>
+    </div>
+    <div class="foot-legal">
+      <span>ИП Ланцова Клавдия</span>
+      <span>ИНН 753502248509</span>
+      <span>ОГРНИП 304753404800260 от 17 февраля 2004 г.</span>
+      <a href="mailto:klaudia.lantsova@ya.ru">klaudia.lantsova@ya.ru</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Моушн-стек: GSAP + SplitType + Lenis (появления — на IntersectionObserver, надёжно) -->
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var root=document.documentElement;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var done=false;
+  function showAll(){root.classList.remove('js-anim');}
+  function killLoader(){var l=document.getElementById('loader'); if(l&&l.parentNode)l.parentNode.removeChild(l);}
+
+  // мобильное меню + залипающая шапка — работают всегда
+  var mast=document.getElementById('mast');
+  addEventListener('scroll',function(){mast.classList.toggle('solid',scrollY>20);},{passive:true});
+  var burger=document.getElementById('burger'),nav=document.getElementById('nav');
+  burger.addEventListener('click',function(){var o=nav.classList.toggle('open');burger.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);});
+
+  // страховка: если моушн не поднялся — показать всё
+  setTimeout(function(){ if(!done){ showAll(); killLoader(); } },3500);
+
+  window.addEventListener('load',function(){
+    if(reduce||!window.gsap){ showAll(); killLoader(); done=true; return; }
+    try{ boot(); done=true; }
+    catch(e){ showAll(); killLoader(); done=true; }
+  });
+
+  function boot(){
+    var g=window.gsap;
+
+    // Lenis — плавный инерционный скролл
+    var lenis=null;
+    if(window.Lenis){
+      lenis=new Lenis({lerp:.1,wheelMultiplier:1,smoothWheel:true});
+      window.__lenis=lenis;
+      (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})();
+    }
+    // якорные ссылки — плавно
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click',function(e){
+        var id=a.getAttribute('href'); if(id.length<2)return;
+        var t=document.querySelector(id); if(!t)return; e.preventDefault();
+        nav.classList.remove('open');burger.classList.remove('open');
+        if(lenis)lenis.scrollTo(t,{offset:-70}); else t.scrollIntoView({behavior:'smooth'});
+      });
+    });
+
+    // вступление: счётчик загрузки → маскированный вход hero
+    var tl=g.timeline();
+    var loader=document.getElementById('loader'), num=loader&&loader.querySelector('.load-num');
+    if(loader){
+      var o={v:0};
+      tl.to(o,{v:100,duration:1.05,ease:'power2.inOut',onUpdate:function(){if(num)num.textContent=Math.round(o.v);}})
+        .to(loader,{yPercent:-100,duration:.85,ease:'power4.inOut'},'+=.05')
+        .add(function(){killLoader();});
+    }
+    tl.fromTo('.hero .line-i',{yPercent:118,opacity:0},{yPercent:0,opacity:1,duration:1.1,stagger:.12,ease:'power4.out'}, loader?'-=.35':0)
+      .fromTo('.hero .fx-up',{y:26,opacity:0},{y:0,opacity:1,duration:.9,stagger:.09,ease:'power3.out'},'<.15')
+      .fromTo('.figure .frame',{opacity:1,clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0% 0)',duration:1.15,ease:'power4.inOut'},'<');
+
+    // подготовка заголовков: режем на слова и прячем (появятся из маски при входе)
+    var splits=[];
+    document.querySelectorAll('[data-split]').forEach(function(el){
+      g.set(el,{opacity:1});
+      var parts=window.SplitType?new SplitType(el,{types:'lines,words'}):null;
+      if(parts){ el.querySelectorAll('.line').forEach(function(l){l.style.overflow='hidden';}); g.set(parts.words,{yPercent:120,opacity:0}); }
+      splits.push({el:el,words:parts?parts.words:null});
+    });
+
+    // прячем блоки, которые будут появляться
+    g.set('.reveal',{opacity:0,y:34});
+
+    function revealEl(el){
+      if(el.__rev)return; el.__rev=1;
+      if(el.hasAttribute('data-split')){
+        var s=splits.filter(function(x){return x.el===el;})[0];
+        if(s&&s.words) g.to(s.words,{yPercent:0,opacity:1,duration:1,ease:'power4.out',stagger:.05});
+        else g.to(el,{opacity:1});
+      } else if(el.classList.contains('rule-draw')){
+        g.to(el,{scaleX:1,duration:1.1,ease:'power3.inOut'});
+      } else {
+        g.to(el,{opacity:1,y:0,duration:1,ease:'power3.out'});
+      }
+    }
+    function startCount(el){
+      if(el.__c)return; el.__c=1; var to=+el.dataset.to,o={v:0};
+      g.to(o,{v:to,duration:1.2,ease:'power2.out',onUpdate:function(){el.textContent=Math.round(o.v);}});
+    }
+
+    // появление по позиции в окне (надёжно с Lenis, не зависит от IO)
+    var revs=[].slice.call(document.querySelectorAll('.reveal,[data-split],.rule-draw'));
+    var cnts=[].slice.call(document.querySelectorAll('.count'));
+    function checkReveals(){
+      var vh=innerHeight;
+      for(var i=revs.length-1;i>=0;i--){ if(revs[i].getBoundingClientRect().top < vh*0.9){ revealEl(revs[i]); revs.splice(i,1); } }
+      for(var j=cnts.length-1;j>=0;j--){ if(cnts[j].getBoundingClientRect().top < vh*0.85){ startCount(cnts[j]); cnts.splice(j,1); } }
+    }
+    window.__checkReveals=checkReveals;
+    if(lenis)lenis.on('scroll',checkReveals);
+    addEventListener('scroll',checkReveals,{passive:true});
+    addEventListener('resize',checkReveals);
+    document.addEventListener('visibilitychange',function(){ if(!document.hidden) checkReveals(); });
+    checkReveals();
+
+    // портрет — мягкий параллакс
+    var img=document.querySelector('.figure img');
+    if(img&&!reduce){
+      var upd=function(){ var r=img.getBoundingClientRect(); var c=(r.top+r.height/2-innerHeight/2)/innerHeight; img.style.transform='scale(1.08) translateY('+(c*-16).toFixed(1)+'px)'; };
+      if(lenis)lenis.on('scroll',upd); else addEventListener('scroll',upd,{passive:true}); upd();
+    }
+
+    // активный пункт меню
+    var links=[].slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+    var sio=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('main section[id]').forEach(function(s){sio.observe(s);});
+  }
+})();
+</script>
+</body>
+</html>
